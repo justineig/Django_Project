@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Advanced News{% endblock %}
+
+{% block content %}
+<h1 class="my-4">Latest News</h1>
+
+<div class="table-responsive news-table">
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Published Date</th>
+                <th>Views</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for news_item in news_items %}
+            <tr class="striped-row {% cycle 'odd-row' 'even-row' %}">
+                <td>{{ forloop.counter }}</td>
+                <td><a href="#">{{ news_item.title }}</a></td>
+                <td>{{ news_item.category }}</td>
+                <td>{{ news_item.pub_date|date:"M d, Y" }}</td>
+                <td>{{ news_item.views }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="d-flex justify-content-between mt-4">
+    <div>
+        <p class="text-muted">Showing {{ news_items|length }} items</p>
+    </div>
+</div>
+{% endblock %}
