@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %} Musician Details {% endblock %}
+{% block content %}
+<div class="musician-detail">
+    <h1>{{ musician.fullNames }}</h1>
+    
+    <div class="musician-info">
+        <p><strong>Phone:</strong> {{ musician.telephone }}</p>
+    </div>
+</div>
+{% endblock %}    

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ band.name}}</h2>
+<h4 class="mt-4">Members we have:</h4>
+<ul>
+
+    {% for musician in band.musicians.all %}
+        <li>{{musician.first_name}} {{musician.last_name}}</li>
+    {% empty %}
+        <li>No of members in this band.</li>
+    {% endfor %}
+</ul>
+<a href="{%url 'bands' %}" class="btn btn-secondary mt-3">Back to Bands</a>
+{% endblock %}

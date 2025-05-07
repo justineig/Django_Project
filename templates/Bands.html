@@ -1,0 +1,20 @@
+
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4">All Bands Available</h2>
+{%for Venue in venue %}
+   <div class="row">
+       {% for band in bands %}
+      <div class="col-md-4">
+          <div class="card mb-3 shadow">
+              <div class="card-body">
+                   <h5 class="card-title">{{ band.name}}</h5>
+                   <a href="{% url 'band' band.id %}" class="btn btn-outline-info">View the Members</a>
+                </div>  
+                 
+            </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+   {% endblock %}
