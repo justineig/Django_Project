@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}All Bands{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">All Bands</h2>
+    
+    <div class="row">
+        {% for band in bands %}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">{{ band.name }}</h5>
+                    <p class="card-text">
+                        <small class="text-muted">
+                            {{ band.musicians.count }} member{{ band.musicians.count|pluralize }}
+                        </small>
+                    </p>
+                    <a href="{% url 'band_detail' band.id %}" class="btn btn-outline-info">
+                        View Members
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">No bands available</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

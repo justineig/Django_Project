@@ -1,14 +1,30 @@
 {% extends "base.html" %}
-{% block content %}
-<h2>{{ band.name}}</h2>
-<h4 class="mt-4">Members we have:</h4>
-<ul>
 
-    {% for musician in band.musicians.all %}
-        <li>{{musician.first_name}} {{musician.last_name}}</li>
-    {% empty %}
-        <li>No of members in this band.</li>
-    {% endfor %}
-</ul>
-<a href="{%url 'bands' %}" class="btn btn-secondary mt-3">Back to Bands</a>
+{% block title %}{{ band.name }} - Members{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>{{ band.name }}</h2>
+    
+    <div class="card mt-4">
+        <div class="card-body">
+            <h4 class="card-title">Members</h4>
+            
+            <ul class="list-group">
+                {% for musician in band.musicians.all %}
+                    <li class="list-group-item">
+                        <a href="{% url 'musician_detail' musician.id %}">
+                            {{ musician.fullNames }}
+                        </a>
+                        <span class="text-muted small">({{ musician.telephone }})</span>
+                    </li>
+                {% empty %}
+                    <li class="list-group-item">No members in this band</li>
+                {% endfor %}
+            </ul>
+            
+            <a href="{% url 'band_list' %}" class="btn btn-secondary mt-3">Back to All Bands</a>
+        </div>
+    </div>
+</div>
 {% endblock %}

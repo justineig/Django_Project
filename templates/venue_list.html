@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}All Venues{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">All Venues</h2>
+    
+    {% for venue in venues %}
+    <div class="card mb-3 shadow">
+        <div class="card-body">
+            <h5 class="card-title">{{ venue.name }}</h5>
+            
+            <h6 class="card-subtitle mb-2 text-muted">Rooms:</h6>
+            <ul class="list-group list-group-flush">
+                {% for room in venue.rooms.all %}
+                    <li class="list-group-item">{{ room.name }}</li>
+                {% empty %}
+                    <li class="list-group-item text-muted">No rooms available</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% empty %}
+    <div class="alert alert-info">No venues available</div>
+    {% endfor %}
+</div>
+{% endblock %}

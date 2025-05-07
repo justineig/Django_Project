@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}{{ musician.fullNames }} - Details{% endblock %}
+
+{% block content %}
+<div class="container musician-detail">
+    <h1>{{ musician.fullNames }}</h1>
+    
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text"><strong>Phone:</strong> {{ musician.telephone }}</p>
+            
+            <h4 class="mt-4">Bands:</h4>
+            <ul class="list-group">
+                {% for band in musician.bands.all %}
+                    <li class="list-group-item">
+                        <a href="{% url 'band_detail' band.id %}">{{ band.name }}</a>
+                    </li>
+                {% empty %}
+                    <li class="list-group-item">Not in any bands</li>
+                {% endfor %}
+            </ul>
+            
+            <a href="{% url 'all_musicians' %}" class="btn btn-secondary mt-3">Back to All Musicians</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
